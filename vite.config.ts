@@ -17,7 +17,7 @@ export default defineConfig({
     ],
   },
   esbuild: {
-    drop: ['console', 'debugger'],
+    // drop: ['console', 'debugger'],  // 生产环境去除console和debugger
   },
   build: {
     target: ['es2015'],

@@ -21,6 +21,9 @@ importers:
         specifier: '4'
         version: 4.5.1(vue@3.5.22(typescript@5.8.3))
     devDependencies:
+      '@types/lodash':
+        specifier: ^4.17.20
+        version: 4.17.20
       '@types/node':
         specifier: ^24.7.1
         version: 24.7.1

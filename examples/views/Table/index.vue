@@ -1,11 +1,72 @@
 <template>
   <div>
-    <xw-table :data="[]" :columns="[]"> </xw-table>
+    <xw-table
+      :data="data"
+      :columns="columns"
+      :total="50"
+      height="400"
+      :pagination="pagination"
+      @selection-change="handleSelectionChange"
+    >
+      <template #expand="scope">
+        <div style="margin: 10px; color: #409eff">
+          {{ scope.row.title }} 的扩展内容
+        </div>
+      </template>
+      <template #slot="{ row }">
+        <el-button type="primary" @click="handleClick(row)">按钮</el-button>
+      </template>
+    </xw-table>
   </div>
 </template>
 
 <script lang="ts" setup>
 import XwTable from 'component/Table';
+import { ref } from 'vue';
+
+const data = ref([
+  {
+    title: '数据1',
+    date: '20250722',
+    image:
+      'https://pss.bdstatic.com/static/superman/img/logo/bd_logo1-66368c33f8.png',
+  },
+  {
+    title: '数据2',
+    date: '20250723',
+    image:
+      'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg',
+  },
+]);
+
+const columns = ref([
+  { label: '', prop: 'selection', type: 'selection' },
+  { label: '', prop: 'expand', type: 'expand', customRender: 'expand' },
+  { label: '序号', prop: 'index', type: 'index' },
+  { label: '标题', prop: 'title' },
+  {
+    label: '日期',
+    prop: 'date',
+    formatter: () => {
+      return '2025-07-22';
+    },
+  },
+  { label: '图片', prop: 'image', type: 'image' },
+  { label: '插槽', prop: 'slot', customRender: 'slot' },
+]);
+
+const pagination = ref({
+  pageSize: 5,
+  currentPage: 1,
+});
+
+const handleSelectionChange = (val) => {
+  console.log('val', val);
+};
+
+const handleClick = (row) => {
+  console.log('row', row);
+};
 </script>
 
 <style lang="scss" scoped></style>
