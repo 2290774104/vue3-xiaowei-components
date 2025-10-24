@@ -1,5 +1,17 @@
 <template>
   <div class="xw-table">
+    <xw-search
+      ref="searchRef"
+      :searchFold="searchFold"
+      @refresh="emitPageChange"
+    >
+      <template #default>
+        <slot name="search"></slot>
+      </template>
+      <template #leftOperate>
+        <slot name="leftOperate"></slot>
+      </template>
+    </xw-search>
     <el-table
       ref="tableRef"
       v-height-adaptive="layoutTable"
@@ -20,7 +32,7 @@
               <el-image :src="scope.row[column.prop]" fit="contain"></el-image>
             </template>
             <!-- 普通渲染 -->
-            <template v-else>{{
+            <template v-else-if="!column.type">{{
               column.formatter
                 ? column.formatter(scope)
                 : scope.row[column.prop]
@@ -46,6 +58,7 @@ import type { PropType } from 'vue';
 import { isBoolean, isObject } from 'lodash';
 import { computed, ref, useAttrs, watch } from 'vue';
 import type { IData, IColumn, IPagination } from '../types';
+import xwSearch from '../../Search';
 
 const props = defineProps({
   // 数据相关
@@ -83,6 +96,11 @@ const props = defineProps({
   autoDoLayout: {
     type: Boolean,
     default: true,
+  },
+  // 是否折叠搜索框
+  searchFold: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -145,10 +163,15 @@ const handleCurrentChange = (val: number) => {
   emitPageChange();
 };
 
+const searchRef = ref();
+
 const layoutTable = computed(() => {
+  console.log(searchRef.value?.$el.offsetHeight);
+  
+  const searchHeight = searchRef.value?.$el?.offsetHeight || 0;
   return {
     height: props.height,
-    topOffset: 0,
+    topOffset: searchHeight,
     bottomOffset: isShowPag.value ? 42 : 0,
   };
 });

@@ -1,6 +1,7 @@
 <template>
   <div>
     <xw-table
+      searchFold
       :data="data"
       :columns="columns"
       :total="50"
@@ -8,6 +9,22 @@
       :pagination="pagination"
       @selection-change="handleSelectionChange"
     >
+      <template #search>
+        <el-form :model="searchForm" ref="searchFormRef" :inline="true">
+          <el-form-item label="标题" prop="title">
+            <el-input
+              v-model="searchForm.title"
+              placeholder="请输入标题"
+            ></el-input>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="handleSearch">查询</el-button>
+          </el-form-item>
+        </el-form>
+      </template>
+      <template #leftOperate>
+        <el-button type="primary">新增</el-button>
+      </template>
       <template #expand="scope">
         <div style="margin: 10px; color: #409eff">
           {{ scope.row.title }} 的扩展内容
@@ -22,7 +39,16 @@
 
 <script lang="ts" setup>
 import XwTable from 'component/Table';
+import type { IColumn } from 'component/Table/types';
 import { ref } from 'vue';
+
+const searchForm = ref({
+  title: '',
+});
+
+const handleSearch = () => {
+  console.log('searchForm', searchForm.value);
+};
 
 const data = ref([
   {
@@ -39,9 +65,9 @@ const data = ref([
   },
 ]);
 
-const columns = ref([
+const columns = ref<IColumn[]>([
   { label: '', prop: 'selection', type: 'selection' },
-  { label: '', prop: 'expand', type: 'expand', customRender: 'expand' },
+  // { label: '', prop: 'expand', type: 'expand', customRender: 'expand' },
   { label: '序号', prop: 'index', type: 'index' },
   { label: '标题', prop: 'title' },
   {
@@ -60,11 +86,11 @@ const pagination = ref({
   currentPage: 1,
 });
 
-const handleSelectionChange = (val) => {
+const handleSelectionChange = (val: any[]) => {
   console.log('val', val);
 };
 
-const handleClick = (row) => {
+const handleClick = (row: any) => {
   console.log('row', row);
 };
 </script>

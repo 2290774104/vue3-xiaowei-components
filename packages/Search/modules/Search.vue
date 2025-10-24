@@ -14,18 +14,13 @@
           :content="isFold ? '显示搜索' : '隐藏搜索'"
           placement="top"
         >
-          <el-button
-            size="mini"
-            circle
-            icon="el-icon-search"
-            @click="handleToggle"
-          />
+          <el-button size="mini" circle :icon="Search" @click="handleToggle" />
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="刷新" placement="top">
           <el-button
             size="mini"
             circle
-            icon="el-icon-refresh"
+            :icon="Refresh"
             @click="handleRefresh"
           />
         </el-tooltip>
@@ -36,6 +31,7 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
+import { Search, Refresh } from '@element-plus/icons-vue';
 
 const props = defineProps({
   // 是否折叠搜索框
