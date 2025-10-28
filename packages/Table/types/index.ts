@@ -1,4 +1,4 @@
-import { TableProps } from 'element-plus';
+// import type { TableProps } from 'element-plus';
 
 export declare interface IData {
   [key: string]: any;

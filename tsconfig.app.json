@@ -15,7 +15,10 @@
     "noUnusedParameters": false,
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedSideEffectImports": true
+    "noUncheckedSideEffectImports": true,
+    "emitDeclarationOnly": true,
+    "declaration": true,
+    "declarationDir": "dist"
   },
-  "include": ["examples/**/*.ts", "examples/**/*.tsx", "examples/**/*.vue"]
+  "include": ["packages/**/*.ts", "packages/**/*.tsx", "packages/**/*.vue"]
 }

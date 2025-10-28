@@ -1,11 +1,17 @@
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 import copyPlugin from 'rollup-plugin-copy';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      tsconfigPath: './tsconfig.app.json',
+    }),
+  ],
   server: {
     port: 8080,
   },
@@ -25,13 +31,21 @@ export default defineConfig({
     lib: {
       entry: './packages/index.ts',
       name: 'Vue3XiaoweiComponents',
-      fileName: 'index',
+      fileName: (format) => `index.${format}.js`,
       formats: ['cjs', 'umd', 'es'],
     },
     outDir: 'dist',
     rollupOptions: {
       // 打包时移除外部依赖
       external: ['vue', 'lodash', 'element-plus'],
+      output: {
+        globals: {
+          vue: 'Vue',
+          lodash: '_',
+          'element-plus': 'ElementPlus',
+        },
+        assetFileNames: 'index.[ext]',
+      },
       plugins: [
         // copy 插件针对vite4封装，vite5中使用时会出现类型报错
         // @ts-ignore
@@ -41,7 +55,6 @@ export default defineConfig({
           targets: [
             { src: './README.md', dest: 'dist/' },
             { src: './package.json', dest: 'dist/' },
-            { src: './types', dest: 'dist/' },
           ],
         }),
       ],
