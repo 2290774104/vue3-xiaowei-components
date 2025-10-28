@@ -54,7 +54,7 @@ export default defineConfig({
           hook: 'closeBundle',
           targets: [
             { src: './README.md', dest: 'dist/' },
-            { src: './package.json', dest: 'dist/' },
+            // { src: './package.json', dest: 'dist/' },
           ],
         }),
       ],

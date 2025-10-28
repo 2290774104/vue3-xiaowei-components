@@ -1,6 +1,6 @@
 {
   "name": "vue3-xiaowei-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "dist/index.umd.js",
   "module": "dist/index.es.js",
   "type": "module",
@@ -36,10 +36,8 @@
   },
   "files": [
     "dist",
-    "packages",
-    "types",
     "package.json",
     "README.md"
   ],
-  "types": "./packages/index.d.ts"
+  "types": "./dist/packages/index.d.ts"
 }
