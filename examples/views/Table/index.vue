@@ -1,11 +1,10 @@
 <template>
-  <div>
+  <div class="table-container">
     <xw-table
       searchFold
       :data="data"
       :columns="columns"
       :total="50"
-      height="400"
       :pagination="pagination"
       @selection-change="handleSelectionChange"
     >
@@ -95,4 +94,8 @@ const handleClick = (row: any) => {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.table-container {
+  height: calc(100vh - 16px);
+}
+</style>

@@ -1,4 +1,4 @@
-import type { DirectiveBinding } from 'vue';
+import { h, type DirectiveBinding } from 'vue';
 
 export default {
   mounted: (el: HTMLElement, binding: DirectiveBinding) => {
@@ -10,10 +10,8 @@ export default {
   },
 };
 
-const getHeight = (binding: DirectiveBinding) => {
+const getHeight = (el: HTMLElement, binding: DirectiveBinding) => {
   const { height, topOffset, bottomOffset } = binding.value;
-  console.log(topOffset, bottomOffset);
-
   // 未设置高度则自适应高度
   if (height) {
     if (typeof height === 'string') {
@@ -21,12 +19,14 @@ const getHeight = (binding: DirectiveBinding) => {
     } else {
       return height - topOffset - bottomOffset;
     }
+  } else {
+    return el.parentElement!.clientHeight - topOffset - bottomOffset;
   }
 };
 
 const setHeight = (el: HTMLElement, binding: DirectiveBinding) => {
-  console.log(binding);
-
-  const height = getHeight(binding);
+  const height = getHeight(el, binding);
+  console.log(height);
+  
   el.style.height = `${height}px`;
 };
