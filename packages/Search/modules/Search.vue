@@ -14,15 +14,10 @@
           :content="isFold ? '显示搜索' : '隐藏搜索'"
           placement="top"
         >
-          <el-button size="mini" circle :icon="Search" @click="handleToggle" />
+          <el-button circle :icon="Search" @click="handleToggle" />
         </el-tooltip>
         <el-tooltip class="item" effect="dark" content="刷新" placement="top">
-          <el-button
-            size="mini"
-            circle
-            :icon="Refresh"
-            @click="handleRefresh"
-          />
+          <el-button circle :icon="Refresh" @click="handleRefresh" />
         </el-tooltip>
       </div>
     </div>
