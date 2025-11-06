@@ -73,7 +73,7 @@ const props = defineProps({
   },
   // 分页配置
   pagination: {
-    type: Boolean as PropType<boolean> | Object as PropType<IPagination>,
+    type: Object as PropType<IPagination>,
     required: false,
     default: false,
   },
@@ -167,7 +167,7 @@ const searchRef = ref();
 
 const layoutTable = computed(() => {
   console.log(searchRef.value?.$el.offsetHeight);
-  
+
   const searchHeight = searchRef.value?.$el?.offsetHeight || 0;
   return {
     height: props.height,
