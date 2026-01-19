@@ -102,6 +102,11 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  // 是否自动计算高度，默认不计算
+  autoHeight: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 // 事件
@@ -137,7 +142,7 @@ watch(
   {
     deep: true,
     immediate: true,
-  }
+  },
 );
 
 const tableRef = ref();
@@ -166,6 +171,11 @@ const handleCurrentChange = (val: number) => {
 const searchRef = ref();
 
 const layoutTable = computed(() => {
+  // 如果不自动计算高度，返回空对象
+  if (!props.autoHeight) {
+    return {};
+  }
+
   console.log(searchRef.value?.$el.offsetHeight);
 
   const searchHeight = searchRef.value?.$el?.offsetHeight || 0;
