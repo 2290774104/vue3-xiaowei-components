@@ -11,6 +11,7 @@ import "highlight.js/lib/common"
 import hljsVuePlugin from "@highlightjs/vue-plugin/dist/highlightjs-vue.esm.min.js" // 引入echarts
 
 // 基于element-plus二次封装基础组件
+import xwComponents from "../../../packages/index"
 
 import DocsCodeDemo from "./components/docs-code-demo.vue"
 import MyLayout from "./components/layout.vue"
@@ -31,7 +32,7 @@ export default {
       app.component(key, component)
     }
     // 全局注册基础组件
-    // app.use(TuiPlus)
+    app.use(xwComponents)
 
     app.component("highlightjs", hljsVuePlugin.component) // 注册代码高亮组件
     app.component("DocsCodeDemo", DocsCodeDemo)

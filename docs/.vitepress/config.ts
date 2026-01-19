@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitepress';
 import { mdPlugin } from './config/plugins';
+import { version } from '../../package.json';
 
 const content = [
   ,
@@ -41,6 +42,74 @@ export default defineConfig({
     ['link', { rel: 'icon', href: './favicon.ico' }],
   ],
   lastUpdated: true,
+  themeConfig: {
+    logo: '/logo.jpg',
+    siteTitle: 'Vue3 小微组件文档',
+    outline: 3,
+    search: {
+      provider: 'local',
+    },
+    darkModeSwitchLabel: '主题',
+    sidebarMenuLabel: '菜单',
+    returnToTopLabel: '返回顶部',
+    outlineTitle: '本页导航',
+    lastUpdatedText: '上次更新时间',
+    docFooter: {
+      prev: '上一页',
+      next: '下一页',
+    },
+    socialLinks: [
+      {
+        icon: 'github',
+        link: 'https://github.com/2290774104/vue3-xiaowei-components',
+      },
+    ],
+    nav: [
+      {
+        text: '安装指南',
+        link: '/guide/installation',
+      },
+      { text: '基础组件', link: '/components/TInput/base.md' },
+      {
+        text: `v${version}`,
+        items: [
+          {
+            text: '更新日志',
+            link: '/guide/upgrade',
+          },
+          {
+            text: '历史版本',
+            link: 'https://github.com/2290774104/vue3-xiaowei-components/releases',
+          },
+        ],
+      },
+    ],
+    sidebar: {
+      '/guide/': [
+        {
+          text: '安装指南',
+          items: [
+            {
+              text: '简介',
+              link: '/guide/index',
+            },
+            {
+              text: '安装',
+              link: '/guide/installation',
+            },
+            {
+              text: '快速开始',
+              link: '/guide/quickstart',
+            },
+            {
+              text: '更新日志',
+              link: '/guide/upgrade',
+            },
+          ],
+        },
+      ],
+    },
+  },
   markdown: {
     lineNumbers: true,
     config: (md) => {
