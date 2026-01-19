@@ -18,7 +18,7 @@ hero:
       link: /guide/quickstart
     - theme: alt
       text: 组件文档
-      link: /components/Table
+      link: /components/overview
 features:
   - icon: 🔨
     title: 实际项目

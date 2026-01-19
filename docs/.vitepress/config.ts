@@ -21,6 +21,7 @@ export default defineConfig({
   title: 'Vue3 小微组件库',
   description: content,
   lang: 'zh-CN',
+  base: '/vue3-xiaowei-components/',
   head: [
     ['meta', { name: 'author', content: 'wocwin' }],
     [
@@ -69,7 +70,10 @@ export default defineConfig({
         text: '安装指南',
         link: '/guide/installation',
       },
-      { text: '基础组件', link: '/components/TInput/base.md' },
+      {
+        text: '组件总览',
+        link: '/components/overview',
+      },
       {
         text: `v${version}`,
         items: [
@@ -104,6 +108,35 @@ export default defineConfig({
             {
               text: '更新日志',
               link: '/guide/upgrade',
+            },
+          ],
+        },
+      ],
+      '/components/': [
+        {
+          text: '组件总览',
+          items: [
+            {
+              text: '组件概览',
+              link: '/components/overview',
+            },
+          ],
+        },
+        {
+          text: '数据展示',
+          items: [
+            {
+              text: 'XwTable 表格组件',
+              link: '/components/Table',
+            },
+          ],
+        },
+        {
+          text: '表单组件',
+          items: [
+            {
+              text: 'XwSearch 搜索组件',
+              link: '/components/Search',
             },
           ],
         },
