@@ -1,6 +1,7 @@
+import path from 'path';
 import { defineConfig } from 'vitepress';
-import { mdPlugin } from './config/plugins';
 import { version } from '../../package.json';
+import { vitepressDemoPlugin } from 'vitepress-demo-plugin';
 
 const content = [
   ,
@@ -146,7 +147,10 @@ export default defineConfig({
   markdown: {
     lineNumbers: true,
     config: (md) => {
-      md.use(mdPlugin);
+      // md.use(mdPlugin);
+      md.use(vitepressDemoPlugin, {
+        demoDir: path.resolve(__dirname, '../demos'),
+      });
     },
   },
 });

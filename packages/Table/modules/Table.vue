@@ -29,7 +29,12 @@
             ></slot>
             <!-- 图片渲染 -->
             <template v-else-if="column.type === 'image'">
-              <el-image :src="scope.row[column.prop]" fit="contain"></el-image>
+              <el-image
+                :src="scope.row[column.prop]"
+                fit="contain"
+                :preview-src-list="previewImage ? [scope.row[column.prop]] : []"
+                preview-teleported
+              ></el-image>
             </template>
             <!-- 普通渲染 -->
             <template v-else-if="!column.type">{{
@@ -55,7 +60,8 @@
 import PagStore from '../store';
 import vHeightAdaptive from '../directive/height-adaptive';
 import type { PropType } from 'vue';
-import { isBoolean, isObject } from 'lodash';
+import isBoolean from 'lodash-es/isBoolean';
+import isObject from 'lodash-es/isObject';
 import { computed, ref, useAttrs, watch } from 'vue';
 import type { IData, IColumn, IPagination } from '../types';
 import xwSearch from '../../Search';
@@ -106,6 +112,11 @@ const props = defineProps({
   autoHeight: {
     type: Boolean,
     default: false,
+  },
+  // 是否启用图片预览功能
+  previewImage: {
+    type: Boolean,
+    default: true,
   },
 });
 
