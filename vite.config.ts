@@ -10,6 +10,9 @@ export default defineConfig({
     vue(),
     dts({
       tsconfigPath: './tsconfig.app.json',
+      // 只输出组件库自身的类型声明；examples 是本地调试页，属于仓库内部，
+      // 打进 npm 包只会污染 dist（原先 dist/examples 即由此产生）
+      include: ['packages/**/*.ts', 'packages/**/*.vue'],
     }),
   ],
   server: {
@@ -28,6 +31,8 @@ export default defineConfig({
   build: {
     target: ['es2015'],
     assetsInlineLimit: 0,
+    // 不把 public/ 下的开发用资源（如 vite.svg）复制进发布产物
+    copyPublicDir: false,
     lib: {
       entry: './packages/index.ts',
       name: 'Vue3XiaoweiComponents',
@@ -36,12 +41,15 @@ export default defineConfig({
     },
     outDir: 'dist',
     rollupOptions: {
-      // 打包时移除外部依赖
-      external: ['vue', 'lodash', 'element-plus'],
+      // 打包时移除外部依赖。
+      external: ['vue', 'lodash-es', 'element-plus'],
       output: {
+        // 组件库同时提供默认导出（app.use）与命名导出（按需引入），
+        // 显式声明 named 避免 UMD 下要求写 .default 才能取到默认导出
+        exports: 'named',
         globals: {
           vue: 'Vue',
-          lodash: '_',
+          'lodash-es': '_',
           'element-plus': 'ElementPlus',
         },
         assetFileNames: 'index.[ext]',
@@ -55,6 +63,8 @@ export default defineConfig({
           targets: [
             { src: './README.md', dest: 'dist/' },
             { src: './components.d.ts', dest: 'dist/' },
+            // AI skill 随包分发：下游装包后可复制到 .workbuddy/skills/ 使用
+            { src: './skills/*', dest: 'dist/skills' },
           ],
         }),
       ],

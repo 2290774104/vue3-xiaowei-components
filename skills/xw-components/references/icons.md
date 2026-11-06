@@ -1,0 +1,316 @@
+# 图标名清单
+
+> 本文件由 `scripts/gen-skill-references.mjs` 从源码生成，**请勿手改**。改完源码后运行 `pnpm gen:skill` 重新生成。
+
+图标来自 `@element-plus/icons-vue`，共 293 个。
+
+用法（组件库中已全局注册全部图标，模板里可直接写组件名）：
+
+```vue
+import { Search, Refresh } from '@element-plus/icons-vue';
+```
+
+```vue
+<el-button circle :icon="Search" />
+<el-icon><Refresh /></el-icon>
+```
+
+**名字写错不会报错，只是图标不渲染**，务必从下面清单里挑。
+
+标注 ★ 的是本仓库已在使用的图标（共 14 个），新增组件时优先复用。
+
+## 全集
+
+- `AddLocation`
+- `Aim`
+- `AlarmClock`
+- `Apple`
+- `ArrowDown`
+- `ArrowDownBold`
+- `ArrowLeft`
+- `ArrowLeftBold`
+- `ArrowRight`
+- `ArrowRightBold`
+- `ArrowUp`
+- `ArrowUpBold`
+- `Avatar`
+- `Back`
+- `Baseball`
+- `Basketball`
+- `Bell`
+- `BellFilled`
+- `Bicycle`
+- `Bottom`
+- `BottomLeft`
+- `BottomRight`
+- `Bowl`
+- `Box`
+- `Briefcase`
+- `Brush`
+- `BrushFilled`
+- `Burger`
+- ★ `Calendar`
+- `Camera`
+- `CameraFilled`
+- `CaretBottom`
+- `CaretLeft`
+- `CaretRight`
+- ★ `CaretTop`
+- `Cellphone`
+- `ChatDotRound`
+- `ChatDotSquare`
+- `ChatLineRound`
+- `ChatLineSquare`
+- `ChatRound`
+- `ChatSquare`
+- `Check`
+- ★ `Checked`
+- `Cherry`
+- `Chicken`
+- `ChromeFilled`
+- `CircleCheck`
+- `CircleCheckFilled`
+- `CircleClose`
+- `CircleCloseFilled`
+- `CirclePlus`
+- `CirclePlusFilled`
+- `Clock`
+- `Close`
+- `CloseBold`
+- `Cloudy`
+- `Coffee`
+- `CoffeeCup`
+- `Coin`
+- `ColdDrink`
+- `Collection`
+- `CollectionTag`
+- `Comment`
+- `Compass`
+- `Connection`
+- `Coordinate`
+- ★ `CopyDocument`
+- `Cpu`
+- `CreditCard`
+- `Crop`
+- `DArrowLeft`
+- `DArrowRight`
+- `DCaret`
+- `DataAnalysis`
+- `DataBoard`
+- `DataLine`
+- ★ `Delete`
+- `DeleteFilled`
+- `DeleteLocation`
+- `Dessert`
+- `Discount`
+- `Dish`
+- `DishDot`
+- ★ `Document`
+- `DocumentAdd`
+- `DocumentChecked`
+- `DocumentCopy`
+- `DocumentDelete`
+- `DocumentRemove`
+- `Download`
+- `Drizzling`
+- `Edit`
+- ★ `EditPen`
+- `Eleme`
+- `ElemeFilled`
+- `ElementPlus`
+- `Expand`
+- `Failed`
+- `Female`
+- `Files`
+- `Film`
+- `Filter`
+- `Finished`
+- `FirstAidKit`
+- `Flag`
+- `Fold`
+- `Folder`
+- `FolderAdd`
+- `FolderChecked`
+- `FolderDelete`
+- `FolderOpened`
+- `FolderRemove`
+- `Food`
+- `Football`
+- `ForkSpoon`
+- `Fries`
+- `FullScreen`
+- `Goblet`
+- `GobletFull`
+- `GobletSquare`
+- `GobletSquareFull`
+- `GoldMedal`
+- `Goods`
+- `GoodsFilled`
+- `Grape`
+- `Grid`
+- `Guide`
+- `Handbag`
+- `Headset`
+- `Help`
+- `HelpFilled`
+- `Hide`
+- `Histogram`
+- `HomeFilled`
+- `HotWater`
+- `House`
+- `IceCream`
+- `IceCreamRound`
+- `IceCreamSquare`
+- `IceDrink`
+- `IceTea`
+- `InfoFilled`
+- `Iphone`
+- `Key`
+- `KnifeFork`
+- `Lightning`
+- `Link`
+- `List`
+- `Loading`
+- `Location`
+- `LocationFilled`
+- `LocationInformation`
+- `Lock`
+- `Lollipop`
+- `MagicStick`
+- `Magnet`
+- `Male`
+- `Management`
+- `MapLocation`
+- `Medal`
+- `Memo`
+- `Menu`
+- `Message`
+- `MessageBox`
+- `Mic`
+- `Microphone`
+- `MilkTea`
+- `Minus`
+- `Money`
+- `Monitor`
+- `Moon`
+- `MoonNight`
+- `More`
+- `MoreFilled`
+- `MostlyCloudy`
+- `Mouse`
+- `Mug`
+- `Mute`
+- `MuteNotification`
+- `NoSmoking`
+- `Notebook`
+- `Notification`
+- `Odometer`
+- `OfficeBuilding`
+- `Open`
+- `Operation`
+- `Opportunity`
+- `Orange`
+- `Paperclip`
+- `PartlyCloudy`
+- `Pear`
+- `Phone`
+- `PhoneFilled`
+- `Picture`
+- `PictureFilled`
+- `PictureRounded`
+- `PieChart`
+- `Place`
+- `Platform`
+- `Plus`
+- `Pointer`
+- `Position`
+- `Postcard`
+- `Pouring`
+- `Present`
+- `PriceTag`
+- `Printer`
+- `Promotion`
+- `QuartzWatch`
+- `QuestionFilled`
+- ★ `Rank`
+- `Reading`
+- `ReadingLamp`
+- ★ `Refresh`
+- `RefreshLeft`
+- `RefreshRight`
+- `Refrigerator`
+- `Remove`
+- `RemoveFilled`
+- `Right`
+- `ScaleToOriginal`
+- `School`
+- `Scissor`
+- ★ `Search`
+- `Select`
+- `Sell`
+- `SemiSelect`
+- `Service`
+- `SetUp`
+- `Setting`
+- `Share`
+- `Ship`
+- `Shop`
+- `ShoppingBag`
+- `ShoppingCart`
+- `ShoppingCartFull`
+- `ShoppingTrolley`
+- `Smoking`
+- `Soccer`
+- `SoldOut`
+- `Sort`
+- `SortDown`
+- `SortUp`
+- `Stamp`
+- ★ `Star`
+- `StarFilled`
+- `Stopwatch`
+- `SuccessFilled`
+- `Sugar`
+- `Suitcase`
+- `SuitcaseLine`
+- `Sunny`
+- `Sunrise`
+- `Sunset`
+- ★ `Switch`
+- `SwitchButton`
+- `SwitchFilled`
+- `TakeawayBox`
+- `Ticket`
+- `Tickets`
+- ★ `Timer`
+- `ToiletPaper`
+- `Tools`
+- `Top`
+- `TopLeft`
+- `TopRight`
+- `TrendCharts`
+- `Trophy`
+- `TrophyBase`
+- `TurnOff`
+- `Umbrella`
+- `Unlock`
+- `Upload`
+- `UploadFilled`
+- `User`
+- `UserFilled`
+- `Van`
+- `VideoCamera`
+- `VideoCameraFilled`
+- `VideoPause`
+- `VideoPlay`
+- ★ `View`
+- `Wallet`
+- `WalletFilled`
+- `WarnTriangleFilled`
+- `Warning`
+- `WarningFilled`
+- `Watch`
+- `Watermelon`
+- `WindPower`
+- `ZoomIn`
+- `ZoomOut`

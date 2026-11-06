@@ -10,7 +10,11 @@
     "preview": "vite preview",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "gen:skill": "node scripts/gen-skill-references.mjs",
+    "verify:skill": "node scripts/verify-skill-assets.mjs",
+    "new:component": "node scripts/new-component.mjs",
+    "prepublishOnly": "npm run gen:skill && npm run verify:skill"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.2",
