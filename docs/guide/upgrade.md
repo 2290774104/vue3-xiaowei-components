@@ -2,6 +2,58 @@
 
 本项目遵循 [语义化版本](https://semver.org/lang/zh-CN/) 规范。
 
+### [v0.2.0] - 2026-11-06
+
+#### 新增功能
+
+##### XwForm 动态表单组件
+
+- **新增**: 创建 XwForm 动态表单组件
+- **特性**: 通过 `items` 配置项动态生成表单，无需在模板中手写 `<el-form-item>`
+- **控件**: 支持 `input`、`textarea`、`password`、`number`、`select`、`radio`、`checkbox`、`switch`、`date`、`datetime`、`daterange`、`time`、`slider`、`rate`、`cascader`、`upload` 共 16 种控件类型
+- **排版**: 通过 `span`（24 分栏）与 `gutter` 实现栅格排版
+- **校验**: `required` 自动生成必填规则，触发方式按控件类型智能选择；支持 `rules` 自定义规则
+- **方法**: 通过 ref 暴露 `validate`、`validateField`、`resetFields`、`clearValidate`、`scrollToField`、`submit`
+- **事件**: 提供 `change`（字段变化）与 `submit`（校验通过后提交）事件，支持 `actions` 插槽
+
+##### 命名导出（按需引入）
+
+- **新增**: 支持 `import { XwTable, XwSearch, XwForm } from 'vue3-xiaowei-components'` 按需引入
+- **说明**: 此前仅提供默认导出，具名导入会拿到 `undefined`，文档中的按需引入示例实际不可用，现已修复
+
+#### 表格组件修复
+
+- **修复**: `autoToTop` 属性此前声明但未生效，现在分页变化触发数据重渲染后会正确滚动到表格顶部
+- **修复**: `autoDoLayout` 属性此前声明但未生效，现在数据更新后会调用 `doLayout` 重新布局
+- **修复**: 补全 `defineExpose`，文档中承诺的 `tableRef` 恢复可用，并新增 `searchRef`、`doLayout()`、`clearSelection()`、`setScrollTop()` 快捷方法
+- **修复**: 高度自适应指令在传入非法 `height` 时会写入 `height: NaNpx`，父容器无高度时会写入负值，现改为跳过并不修改样式
+- **修复**: `pagination` 的类型补充 `boolean`，与实现支持的 `true` / `false` 保持一致
+- **修复**: 未声明的属性此前会同时绑定到根元素与内部 `el-table`，现关闭自动继承，`class` / `style` 归外层容器，其余透传给 `el-table`
+- **修复**: 搜索区折叠、分页显隐变化后表格高度不会重新计算
+- **优化**: 分页状态改为组件内部维护，废弃原先的模块级单例 `PagStore`，同一页面多个表格不再共享分页状态互相干扰
+- **优化**: 移除 `lodash-es` 依赖（仅用于布尔与对象判断），改为本地实现，产物体积减小
+
+#### 构建优化
+
+- **修复**: `vite` 的 `external` 配置包名由 `lodash` 修正为 `lodash-es`，此前未生效导致依赖被重复打包
+- **优化**: 类型声明不再包含 `examples/` 目录，避免本地调试页的类型定义进入发布包
+- **优化**: 不再将 `public/` 下的开发用资源（如 `vite.svg`）复制进发布产物
+- **优化**: 显式声明 `output.exports: 'named'`，消除 UMD 构建下同时存在默认导出与命名导出的告警
+
+#### 开发工具
+
+- **新增**: 新增三个开发脚本，配套 AI skill 使用，降低"新增组件漏改注册点""文档与源码不一致"这类问题
+  - `pnpm gen:skill`：从源码抽取生成组件清单、图标名清单、注册点对照表
+  - `pnpm verify:skill`：校验生成物是否漂移、注册点是否齐全、引用是否有效，已挂入 `prepublishOnly`
+  - `pnpm new:component`：新增组件脚手架，生成骨架并自动登记全部注册点
+- **新增**: `skills/xw-components/` AI skill，覆盖组件库开发维护与业务使用两种场景，随包发布至 `dist/skills/`
+
+#### 文档
+
+- **文档**: 完善 README，补充安装、使用、开发命令、脚本说明与目录结构
+- **文档**: 更新 XwTable 文档的方法说明与属性描述
+- **文档**: 更新组件总览页版本号至 `0.2.0`
+
 ### [v0.1.4] - 2026-08-24
 
 #### 表格组件优化
