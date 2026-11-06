@@ -16,11 +16,11 @@
 | ------------ | -------------------------------------------------------------------- | ------------------------ | ------- | -------- |
 | data         | 表格数据                                                             | `IData[]`                | -       | 是       |
 | columns      | 表格列配置                                                           | `IColumn[]`              | -       | 是       |
-| pagination   | 分页配置，传入 `IPagination` 对象自定义分页                          | `boolean \| IPagination` | `false` | 否       |
+| pagination   | 分页配置，传 `true` 使用默认配置，传 `IPagination` 对象自定义分页，传 `false` 不显示分页 | `boolean \| IPagination` | `false` | 否       |
 | total        | 数据总数（分页时使用）                                               | `number`                 | `0`     | 否       |
 | height       | 表格高度，未设置时默认占满父级容器                                   | `number \| string`       | `''`    | 否       |
-| autoToTop    | 是否在数据重渲染后自动滚动到顶部                                     | `boolean`                | `true`  | 否       |
-| autoDoLayout | 是否在数据更新后重新布局表格                                         | `boolean`                | `true`  | 否       |
+| autoToTop    | 是否在分页变化触发数据重渲染后自动滚动到表格顶部                     | `boolean`                | `true`  | 否       |
+| autoDoLayout | 是否在数据更新后重新布局表格（调用 `doLayout`）                      | `boolean`                | `true`  | 否       |
 | searchFold   | 是否折叠搜索框                                                       | `boolean`                | `false` | 否       |
 | autoHeight   | 是否自动计算高度，启用后会根据搜索区域和分页区域动态计算表格可用高度 | `boolean`                | `false` | 否       |
 | previewImage | 图片类型列是否启用预览功能                                           | `boolean`                | `true`  | 否       |
@@ -88,13 +88,17 @@ interface IData {
 
 ## 方法说明
 
-组件内部通过 `ref` 暴露了以下 Element Plus Table 实例方法：
+组件通过 `ref` 暴露了以下内容，用于调用 Element Plus Table 的原生方法：
 
-| 方法名   | 说明                                                                                                                                           |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| tableRef | 内部 `el-table` 实例引用，可通过它调用 Element Plus Table 的所有方法，如 `clearSelection()`、`toggleRowSelection()`、`sort()`、`doLayout()` 等 |
+| 方法名         | 说明                                                                                                                       |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| tableRef       | 内部 `el-table` 实例引用，可调用 Element Plus Table 的所有方法，如 `clearSelection()`、`toggleRowSelection()`、`sort()` 等 |
+| searchRef      | 内部 `xw-search` 实例引用                                                                                                  |
+| doLayout       | 重新布局表格，等价于 `tableRef.doLayout()`                                                                                 |
+| clearSelection | 清空多选选中状态，等价于 `tableRef.clearSelection()`                                                                       |
+| setScrollTop   | 设置纵向滚动位置，默认回到顶部，等价于 `tableRef.setScrollTop(top)`                                                        |
 
-> **使用示例**：`tableRef.value.tableRef.clearSelection()`
+> **使用示例**：`tableRef.value.clearSelection()`、`tableRef.value.tableRef.toggleRowSelection(row, true)`
 
 ## 高级用法
 

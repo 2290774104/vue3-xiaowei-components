@@ -75,7 +75,7 @@ const activeCategory = ref('all')
 const components = ref([
   {
     name: 'XwTable',
-    version: '0.1.4',
+    version: '0.2.0',
     description: '功能强大的表格组件，支持分页、搜索、自定义列渲染等',
     link: '/components/Table',
     icon: 'Grid',
@@ -84,7 +84,7 @@ const components = ref([
   },
   {
     name: 'XwSearch',
-    version: '0.1.4',
+    version: '0.2.0',
     description: '搜索表单组件，提供统一的搜索和操作区域布局',
     link: '/components/Search',
     icon: 'Search',
@@ -93,7 +93,7 @@ const components = ref([
   },
   {
     name: 'XwForm',
-    version: '0.1.4',
+    version: '0.2.0',
     description: '动态表单组件，通过配置项生成表单，支持栅格排版与必填校验',
     link: '/components/Form',
     icon: 'Document',
