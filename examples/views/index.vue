@@ -19,7 +19,11 @@ interface IComponent {
   path: string;
 }
 
-const components = ref<IComponent[]>([{ name: 'Table 表格', path: '/table' }]);
+const components = ref<IComponent[]>([
+  { name: 'Table 表格', path: '/table' },
+  { name: 'Form 动态表单', path: '/form' },
+  { name: 'FormDesigner 表单设计器', path: '/form-designer' },
+]);
 
 const handleClick = (item: IComponent) => {
   router.push({
