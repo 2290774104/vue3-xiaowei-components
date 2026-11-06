@@ -139,6 +139,10 @@ export default defineConfig({
               text: 'XwSearch 搜索组件',
               link: '/components/Search',
             },
+            {
+              text: 'XwForm 动态表单',
+              link: '/components/Form',
+            },
           ],
         },
       ],

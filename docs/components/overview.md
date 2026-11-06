@@ -90,6 +90,15 @@ const components = ref([
     icon: 'Search',
     category: 'form',
     tags: ['搜索', '表单', '布局']
+  },
+  {
+    name: 'XwForm',
+    version: '0.1.4',
+    description: '动态表单组件，通过配置项生成表单，支持栅格排版与必填校验',
+    link: '/components/Form',
+    icon: 'Document',
+    category: 'form',
+    tags: ['表单', '动态', '校验', '排版']
   }
 ])
 
