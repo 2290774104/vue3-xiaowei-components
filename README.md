@@ -2,6 +2,8 @@
 
 基于 Element-Plus 二次封装组件
 
+📖 在线文档：**https://2290774104.github.io/vue3-xiaowei-components/**
+
 ## 安装
 
 ```sh
@@ -44,22 +46,25 @@ import 'vue3-xiaowei-components/dist/index.css';
 import { XwTable } from 'vue3-xiaowei-components';
 ```
 
-详细文档见 `docs/`（VitePress）。
+详细文档见 [在线文档](https://2290774104.github.io/vue3-xiaowei-components/)，源文件位于 `docs/`（VitePress）。
 
 ## 开发
 
 ```sh
-pnpm dev          # 本地调试（examples/，端口 8080）
-pnpm docs:dev     # 文档站
-pnpm build        # 构建产物到 dist/
+pnpm dev           # 本地调试（examples/，端口 8080）
+pnpm docs:dev      # 文档站开发服务
+pnpm docs:build    # 构建文档站
+pnpm docs:deploy   # 构建并部署文档站到 GitHub Pages
+pnpm build         # 构建组件库到 dist/
 ```
 
 ## 脚本
 
-仓库内置三个开发脚本，配合 `skills/xw-components/` 下的 AI skill 使用，用于降低"新增组件漏改注册点""文档与源码不一致"这类问题。
+仓库内置四个开发脚本：三个配合 `skills/xw-components/` 下的 AI skill 使用，用于降低"新增组件漏改注册点""文档与源码不一致"这类问题；另一个用于部署文档站。
 
 | 命令 | 脚本 | 用途 |
 | ---- | ---- | ---- |
+| `pnpm docs:deploy` | `scripts/deploy-docs.mjs` | 构建并部署文档站到 GitHub Pages |
 | `pnpm gen:skill` | `scripts/gen-skill-references.mjs` | 从源码生成 skill 索引 |
 | `pnpm verify:skill` | `scripts/verify-skill-assets.mjs` | 校验索引与源码是否漂移 |
 | `pnpm new:component` | `scripts/new-component.mjs` | 新增组件脚手架 |
@@ -150,6 +155,39 @@ examples/views/index.vue            首页入口（--examples）
 3. 调整 `docs/components/overview.md` 卡片的 `description` 与 `tags`
 4. 运行 `pnpm gen:skill && pnpm verify:skill`，应全绿
 5. 运行 `pnpm build` 确认类型与打包通过
+
+### `pnpm docs:deploy` — 部署文档站
+
+构建文档站并部署到 GitHub Pages（`gh-pages` 分支）。
+
+```sh
+pnpm docs:deploy                        # 构建 + 部署
+pnpm docs:deploy --dry-run              # 只生成提交，不推送
+pnpm docs:deploy --no-build             # 跳过构建，直接部署现有产物
+pnpm docs:deploy --message "docs: xxx"  # 自定义提交信息
+```
+
+| 参数 | 说明 |
+| ---- | ---- |
+| `--no-build` | 跳过构建，直接部署 `docs/.vitepress/dist` |
+| `--dry-run` | 走到生成提交为止，不推送 |
+| `--message` | 自定义提交信息，默认 `deploy: docs v<version>` |
+| `--branch` | 目标分支，默认 `gh-pages` |
+| `--remote` | 远程名，默认 `origin` |
+
+脚本做的事：
+
+1. 构建前先清空 `docs/.vitepress/dist`，确保产物不含上次构建的残留（带 hash 的旧资源）
+2. 执行 `pnpm docs:build`
+3. 用 `git worktree` 在临时目录 `.deploy-worktree` 中检出目标分支，**不影响当前工作区**
+4. 清空分支内容后镜像构建产物，保证与 `dist` 完全一致（不留旧文件）
+5. 写入 `.nojekyll`，避免 GitHub Pages 的 Jekyll 处理干扰 VitePress 资源
+6. 提交并推送，最后清理临时目录
+
+实现上只依赖 `node:fs` 与 `child_process`，**不需要安装 `gh-pages` 等额外依赖**。
+
+> 若仓库名或 Pages 地址有变化，请确认 `docs/.vitepress/config.ts` 的 `base` 与仓库名一致 ——
+> 项目站点若 `base` 不匹配，部署后页面会白屏。脚本在部署前会检查并在不匹配时给出提示。
 
 ## 配套 AI skill
 

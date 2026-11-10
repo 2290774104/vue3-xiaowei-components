@@ -11,6 +11,7 @@
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
+    "docs:deploy": "node scripts/deploy-docs.mjs",
     "gen:skill": "node scripts/gen-skill-references.mjs",
     "verify:skill": "node scripts/verify-skill-assets.mjs",
     "new:component": "node scripts/new-component.mjs",

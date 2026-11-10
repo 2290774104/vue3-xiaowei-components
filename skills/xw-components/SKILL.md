@@ -93,6 +93,21 @@ pnpm verify:skill
 
 输出全部注册点与引用问题。典型用途：接手别人的分支、排查"文档有页面但没 demo"、"总览页搜不到组件"。
 
+### 工作流 E：部署文档站
+
+```bash
+pnpm docs:deploy              # 构建并部署到 GitHub Pages
+pnpm docs:deploy --dry-run    # 只生成提交，先看改动再决定是否推送
+```
+
+- `scripts/deploy-docs.mjs` 构建后把 `docs/.vitepress/dist` 镜像到 `gh-pages` 分支
+- 用 `git worktree` 在 `.deploy-worktree`（已 gitignore）中操作，**不影响当前工作区**
+- 会写入 `.nojekyll`，并**清空分支旧内容**后整体替换 —— 因此不会残留历史构建的带 hash 资源
+- 部署前会核对 `docs/.vitepress/config.ts` 的 `base` 是否与仓库名一致（不匹配会导致 Pages 白屏）
+- 若改过 `docs/` 内容或组件文档，先 `pnpm docs:deploy` 重新部署，线上才会更新
+
+> 文档站地址：https://2290774104.github.io/vue3-xiaowei-components/
+
 ---
 
 ## USE 模式：在业务项目里使用组件
