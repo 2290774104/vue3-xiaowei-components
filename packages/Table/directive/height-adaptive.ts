@@ -24,6 +24,12 @@ const getHeight = (el: HTMLElement, binding: DirectiveBinding) => {
 };
 
 const setHeight = (el: HTMLElement, binding: DirectiveBinding) => {
+  // 指令值为 null/undefined 时（如 autoHeight 为 false），不接管高度计算，
+  // 并清掉之前写入的内联高度，让 el-table 回到默认按内容撑开的布局
+  if (binding.value == null) {
+    el.style.height = '';
+    return;
+  }
   const height = getHeight(el, binding);
   // 计算不出有效高度时不动样式，避免写入 NaNpx / 负值把表格压没
   if (!Number.isFinite(height) || height < 0) return;

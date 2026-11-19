@@ -227,7 +227,7 @@ const layoutTable = computed(() => {
 
   // 如果不自动计算高度，返回空对象
   if (!props.autoHeight) {
-    return {};
+    return null;
   }
 
   const searchHeight = searchRef.value?.$el?.offsetHeight || 0;
