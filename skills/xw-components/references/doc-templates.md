@@ -150,7 +150,7 @@ sidebar: {
 ```js
 {
   name: 'XwXxx',
-  version: '0.2.0',          // 与 package.json 版本一致
+  version: '0.2.1',          // 与 package.json 版本一致
   description: '一句话描述',
   link: '/components/Xxx',
   icon: 'Grid',              // Element Plus 图标名，见 references/icons.md
